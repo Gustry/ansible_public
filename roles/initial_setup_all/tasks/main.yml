@@ -1,58 +1,9 @@
 ---
-    - name: Installation des packages
-      apt: name={{ item }} update_cache=yes state=latest cache_valid_time=3600
-      become: true
-      force_apt_get: true
-      with_items:
-        - sudo
-        - vim
-        - htop
-        - git
-        - ca-certificates
-        - avahi-daemon
-        - byobu
-        - python-pip
-        - python-dev
-        - unzip
-        - realpath
 
-    - name: MAJ des paquets APT
-      become: true
-      force_apt_get: true
-      apt:
-        upgrade: yes
-        update_cache: yes
+  - include: apt.yml
+    tags: apt
 
-    - name: Saisie des commandes avec inputrc
-      copy: src=files/inputrc dest={{ item }}/.inputrc
-      become: true
-      with_items:
-        - /home/{{ ansible_user | default() }}
-        - /root
-      when: ansible_user is defined or item == "/root"
-
-    - name: Editeur Nano
-      copy: src=files/nanorc dest={{ item }}/.nanorc
-      become: true
-      with_items:
-        - /home/{{ ansible_user | default() }}
-        - /root
-      when: ansible_user is defined or item == "/root"
-
-    - name: Editeur Vim
-      copy: src=files/vimrc dest={{ item }}/.vimrc
-      become: true
-      with_items:
-        - /home/{{ ansible_user | default() }}
-        - /root
-      when: ansible_user is defined or item == "/root"
-
-    - name: Configuration de Git
-      template: src=templates/gitconfig dest={{ item }}/.gitconfig
-      become: true
-      with_items:
-        - /home/{{ ansible_user | default() }}
-        - /root
-      when: ansible_user is defined or item == "/root"
+  - include: utils.yml
+    tags: utils
 
 ...

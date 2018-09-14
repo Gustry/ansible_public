@@ -1,0 +1,35 @@
+---
+
+  - name: Saisie des commandes avec inputrc
+    copy: src=files/inputrc dest={{ item }}/.inputrc
+    become: true
+    with_items:
+      - /home/{{ ansible_user | default() }}
+      - /root
+    when: ansible_user is defined or item == "/root"
+
+  - name: Editeur Nano
+    copy: src=files/nanorc dest={{ item }}/.nanorc
+    become: true
+    with_items:
+      - /home/{{ ansible_user | default() }}
+      - /root
+    when: ansible_user is defined or item == "/root"
+
+  - name: Editeur Vim
+    copy: src=files/vimrc dest={{ item }}/.vimrc
+    become: true
+    with_items:
+      - /home/{{ ansible_user | default() }}
+      - /root
+    when: ansible_user is defined or item == "/root"
+
+  - name: Configuration de Git
+    template: src=templates/gitconfig dest={{ item }}/.gitconfig
+    become: true
+    with_items:
+      - /home/{{ ansible_user | default() }}
+      - /root
+    when: ansible_user is defined or item == "/root"
+
+...
