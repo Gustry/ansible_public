@@ -1,0 +1,14 @@
+---
+
+- name: Installation des packages pour une utilisation desktop
+  apt: name={{ item }} update_cache=yes state=latest cache_valid_time=3600
+  become: true
+  force_apt_get: true
+  with_items:
+    - peek  # capture écran GIF
+    - vlc
+    # - pycharm
+    # - spotify
+    # - pgadmin
+
+...
