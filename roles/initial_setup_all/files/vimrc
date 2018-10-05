@@ -6,4 +6,3 @@
 syntax on
 set number
 set showcmd
-set mouse=a
