@@ -18,6 +18,7 @@
       - python-dev
       - unzip
       - realpath
+      - tree
 
 - name: MAJ des paquets APT
   become: true
