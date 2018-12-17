@@ -10,6 +10,7 @@
       - peek  # capture écran GIF
       - vlc
       - ovpn
+      - network-manager-openvpn-gnome
       - nemo # instead of nautilus
       # - pycharm
       # - spotify
